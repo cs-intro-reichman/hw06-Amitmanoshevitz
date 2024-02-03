@@ -47,7 +47,7 @@ public class Runigram {
 		int j = 0;
 		int i;
 		Color tempColor;
-		while (j < numRows) {
+		while (j < numRows) { // #feedback - since you run on i and j from 0 to numCols and numRows, consider using a for loop in this case.
 			i = 0;
 			while (i < numCols) {
 				tempColor = new Color(in.readInt(), in.readInt(), in.readInt());
@@ -79,6 +79,7 @@ public class Runigram {
 
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < col; j++) {
+				// #feedback - you can use the above print(Color c) function instead of implementing it again here.
 			System.out.print("(");
 			System.out.printf("%3s",image[i][j].getRed()); 
 			System.out.print(",");
@@ -148,6 +149,8 @@ public class Runigram {
 
 		for (int i = 0; i <rows; i++) {
 			for (int j = 0; j < col; j++) {
+				// #feedback - this temp variable is not needed since you don't change image[i][j]. You can do it in one line -
+				// image3[i][j] = luminance(image[i][j]);
 				Color tempColor = image[i][j];
 				tempColor = luminance(tempColor);
 				image3 [i][j]= tempColor;
@@ -221,6 +224,7 @@ public static Color[][] scaled(Color[][] image, int width, int height) {
 		for (int i = 0; i <rows; i++) {
 			for (int j = 0; j < col; j++) {
 
+				// #feedback - also here, this temp is not needed.
 				Color tempColor = blend(image1[i][j], image2[i][j], alpha);
 				image5 [i][j]= tempColor;
 			}
@@ -240,7 +244,7 @@ public static Color[][] scaled(Color[][] image, int width, int height) {
 
 		for (int step = 0; step <= n; step++) {
 
-			double weight = (double)(step/n);
+			double weight = (double)(step/n); // #feedback - should be ((n-step)/n)
 			Color[][] blendedImage = blend(source, targetimage, weight);
 			display(blendedImage);
 	
